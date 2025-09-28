@@ -5,7 +5,8 @@ const nextConfig: NextConfig = {
     if (process.env.NODE_ENV === "development") {
       config.module.rules.push({
         test: /\.(jsx|tsx)$/,
-        exclude: /node_modules/,
+        // Don't inject component tagger into three/fiber scenes
+        exclude: [/node_modules/, /src\/components\/three\//],
         enforce: "pre",
         use: "@dyad-sh/nextjs-webpack-component-tagger",
       });
