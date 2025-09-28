@@ -5,7 +5,7 @@ import { Html } from "@react-three/drei";
 import * as THREE from "three";
 
 type Props = {
-  id: string;
+  sectionId: string;
   name: string;
   position: [number, number, number];
   radius?: number;
@@ -13,7 +13,7 @@ type Props = {
   onSelect: (id: string) => void;
 };
 
-const Planet: React.FC<Props> = ({ id, name, position, onSelect, radius = 2, color = "#6ee7b7" }) => {
+const Planet: React.FC<Props> = ({ sectionId, name, position, onSelect, radius = 2, color = "#6ee7b7" }) => {
   const [hovered, setHovered] = useState(false);
 
   const material = useMemo(() => {
@@ -34,7 +34,7 @@ const Planet: React.FC<Props> = ({ id, name, position, onSelect, radius = 2, col
         onPointerOut={() => setHovered(false)}
         onClick={(e) => {
           e.stopPropagation();
-          onSelect(id);
+          onSelect(sectionId);
         }}
         scale={hovered ? 1.15 : 1}
         castShadow

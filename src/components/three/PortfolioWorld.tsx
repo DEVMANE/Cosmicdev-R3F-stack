@@ -100,7 +100,7 @@ const PortfolioWorld: React.FC = () => {
         {planetDefs.map((p) => (
           <Planet
             key={p.id}
-            id={p.id}
+            sectionId={p.id}
             name={p.name}
             position={p.position}
             radius={p.radius}
