@@ -2,7 +2,9 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
+import type { GLTF } from "three-stdlib";
 
 type Controls = {
   forward: boolean;
@@ -27,6 +29,8 @@ const KEYMAP: Record<string, keyof Controls> = {
   ShiftRight: "down",
 };
 
+const MODEL_PATH = "/models/super_starfury.glb";
+
 type Props = {
   onPositionChange?: (pos: THREE.Vector3) => void;
 };
@@ -35,6 +39,18 @@ const Astronaut: React.FC<Props> = ({ onPositionChange }) => {
   const group = useRef<THREE.Group>(null);
   const velocity = useRef(new THREE.Vector3());
   const { camera } = useThree();
+
+  const gltf = useGLTF(MODEL_PATH) as GLTF;
+  const ship = React.useMemo(() => {
+    const cloned = gltf.scene.clone(true);
+    cloned.traverse((obj) => {
+      if (obj instanceof THREE.Mesh) {
+        obj.castShadow = true;
+        obj.receiveShadow = true;
+      }
+    });
+    return cloned;
+  }, [gltf.scene]);
 
   const [controls, setControls] = useState<Controls>({
     forward: false,
@@ -111,53 +127,12 @@ const Astronaut: React.FC<Props> = ({ onPositionChange }) => {
 
   return (
     <group ref={group} position={[0, 2, 20]}>
-      <mesh castShadow>
-        <capsuleGeometry args={[0.7, 1.6, 8, 16]} />
-        <meshStandardMaterial color="#9ca3af" metalness={0.3} roughness={0.6} />
-      </mesh>
-
-      <mesh position={[0, 1.2, 0]} castShadow>
-        <sphereGeometry args={[0.85, 32, 32]} />
-        <meshPhysicalMaterial
-          color="#06b6d4"
-          roughness={0.05}
-          metalness={0.2}
-          transmission={0.6}
-          thickness={0.6}
-          emissive="#22d3ee"
-          emissiveIntensity={0.2}
-        />
-      </mesh>
-
-      <mesh position={[0, 0.3, 0.8]} castShadow>
-        <boxGeometry args={[0.9, 1.2, 0.4]} />
-        <meshStandardMaterial color="#9ca3af" metalness={0.3} roughness={0.6} />
-      </mesh>
-
-      <mesh position={[0.4, 0.2, 0.1]}>
-        <boxGeometry args={[0.1, 0.8, 0.1]} />
-        <meshStandardMaterial
-          color="#22d3ee"
-          emissive="#22d3ee"
-          emissiveIntensity={0.6}
-          metalness={0.7}
-          roughness={0.3}
-        />
-      </mesh>
-      <mesh position={[-0.4, 0.2, 0.1]}>
-        <boxGeometry args={[0.1, 0.8, 0.1]} />
-        <meshStandardMaterial
-          color="#22d3ee"
-          emissive="#22d3ee"
-          emissiveIntensity={0.6}
-          metalness={0.7}
-          roughness={0.3}
-        />
-      </mesh>
-
+      <primitive object={ship} scale={0.18} rotation={[0, Math.PI, 0]} />
       <pointLight color={"#22d3ee"} intensity={0.9} distance={12} position={[0, 1.2, 1.4]} />
     </group>
   );
 };
+
+useGLTF.preload(MODEL_PATH);
 
 export default Astronaut;
