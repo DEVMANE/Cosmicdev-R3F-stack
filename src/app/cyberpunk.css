@@ -1,0 +1,687 @@
+/* Cyberpunk UI Styles */
+
+:root {
+  --primary: #00f3ff;
+  --secondary: #ff00ff;
+  --accent: #8a2be2;
+  --dark: #0a0a15;
+  --metal-dark: #1a1a2e;
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.cyberpunk-body {
+  font-family: 'Orbitron', 'Segoe UI', sans-serif;
+  background: var(--dark);
+  color: var(--primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  perspective: 2000px;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(10, 10, 21, 0.95) 0%, transparent 35%),
+    radial-gradient(ellipse at 90% 80%, rgba(138, 43, 226, 0.4) 0%, transparent 35%),
+    linear-gradient(135deg, #0a0a15 0%, #0f0c29 50%, #1a1a2e 100%);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Grid de fondo optimizado */
+.cyberpunk-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(0deg, rgba(0, 243, 255, 0.02), rgba(0, 243, 255, 0.02) 1px, transparent 1px, transparent 15px),
+    repeating-linear-gradient(90deg, rgba(0, 243, 255, 0.02), rgba(0, 243, 255, 0.02) 1px, transparent 1px, transparent 15px);
+  z-index: -2;
+  transform: translateZ(0);
+}
+
+/* Luces neon optimizadas */
+.neon-light {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(15px);
+  z-index: -1;
+  opacity: 0.4;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+.neon-light:nth-child(1) {
+  width: 250px;
+  height: 250px;
+  top: 15%;
+  left: 15%;
+  background: radial-gradient(circle, var(--primary), transparent 70%);
+}
+
+.neon-light:nth-child(2) {
+  width: 200px;
+  height: 200px;
+  bottom: 20%;
+  right: 20%;
+  background: radial-gradient(circle, var(--secondary), transparent 70%);
+}
+
+/* Líneas de energía optimizadas */
+.energy-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  box-shadow: 0 0 10px var(--primary);
+  z-index: -1;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.energy-line:nth-child(3) {
+  top: 30%;
+  width: 100%;
+}
+
+.energy-line:nth-child(4) {
+  top: 70%;
+  width: 100%;
+}
+
+.cyberpunk-container {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  padding: 40px;
+  transform: translateZ(0);
+  will-change: transform;
+  z-index: 10;
+}
+
+.cyberpunk-scene {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.cyberpunk-title-container {
+  position: relative;
+  margin-bottom: 40px;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.cyberpunk-main-title {
+  font-size: 4.5rem;
+  text-align: center;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 800;
+  text-shadow: 0 0 20px var(--primary);
+  transform: translateZ(0);
+  will-change: transform;
+  font-family: 'Orbitron', sans-serif;
+  position: relative;
+}
+
+.cyberpunk-main-title::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.2;
+  transform: translateZ(-5px);
+  filter: blur(5px);
+}
+
+.cyberpunk-subtitle {
+  font-size: 1.4rem;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.8;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.cyberpunk-cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  transform: translateZ(0);
+  will-change: transform;
+  margin-top: 30px;
+}
+
+.cyberpunk-card {
+  position: relative;
+  width: 420px;
+  min-width: 420px;
+  min-height: 380px;
+  background: rgba(26, 26, 46, 0.7);
+  border-radius: 20px;
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transform: translateZ(0);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  cursor: pointer;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  border: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+.cyberpunk-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent)) border-box;
+  mask: linear-gradient(white, white) padding-box, linear-gradient(45deg, var(--primary), var(--secondary), var(--accent)) border-box;
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.cyberpunk-card:hover {
+  transform: perspective(1000px) rotateX(-10deg) rotateY(10deg) translateZ(30px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 243, 255, 0.5);
+}
+
+.cyberpunk-card-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  color: var(--primary);
+  text-align: center;
+  transform: translateZ(0);
+  will-change: transform;
+  position: relative;
+}
+
+.cyberpunk-card-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  border-radius: 50%;
+  opacity: 0.1;
+  filter: blur(20px);
+  z-index: -1;
+}
+
+.cyberpunk-card-title {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: var(--primary);
+  text-align: center;
+  transform: translateZ(0);
+  will-change: transform;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cyberpunk-card-title::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  opacity: 0.1;
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.cyberpunk-card-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 20px;
+  transform: translateZ(0);
+  flex-grow: 1;
+  position: relative;
+}
+
+.cyberpunk-card-content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
+  z-index: 1;
+}
+
+.cyberpunk-card-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateZ(0);
+  position: relative;
+}
+
+.cyberpunk-stat-value {
+  font-weight: bold;
+  color: var(--secondary);
+  font-size: 1.2rem;
+}
+
+.cyberpunk-action-btn {
+  position: relative;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  transform: translateZ(0);
+  box-shadow: 0 10px 25px rgba(0, 243, 255, 0.4);
+  margin-top: 40px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  backface-visibility: hidden;
+  min-width: 200px;
+  border: 1px solid rgba(0, 243, 255, 0.3);
+}
+
+.cyberpunk-action-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent)) border-box;
+  mask: linear-gradient(white, white) padding-box, linear-gradient(45deg, var(--primary), var(--secondary), var(--accent)) border-box;
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.cyberpunk-action-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 243, 255, 0.6);
+}
+
+/* Control Panel */
+.cyberpunk-control-panel {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  width: 240px;
+  background: rgba(26, 26, 46, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow:
+    0 10px 30px rgba(0, 243, 255, 0.3),
+    inset 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  transform: translateZ(0);
+  z-index: 100;
+  will-change: transform;
+}
+
+.cyberpunk-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.cyberpunk-panel-title {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cyberpunk-panel-status {
+  width: 12px;
+  height: 12px;
+  background: #00f3ff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00f3ff;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+.cyberpunk-control-section {
+  margin-bottom: 20px;
+}
+
+.cyberpunk-section-title {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 12px;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cyberpunk-control-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.cyberpunk-control-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cyberpunk-control-slider {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.cyberpunk-slider-track {
+  position: absolute;
+  height: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+  width: 70%;
+}
+
+.cyberpunk-slider-handle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  top: -5px;
+  left: 70%;
+  transform: translateX(-50%);
+  cursor: grab;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+  transition: all 0.2s ease;
+}
+
+.cyberpunk-slider-handle:hover {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.7);
+}
+
+.cyberpunk-toggle-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cyberpunk-toggle-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.cyberpunk-toggle-switch {
+  width: 50px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cyberpunk-toggle-switch.active {
+  background: rgba(0, 243, 255, 0.5);
+}
+
+.cyberpunk-toggle-switch::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+.cyberpunk-toggle-switch.active::after {
+  transform: translateX(26px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cyberpunk-main-title {
+    font-size: 3.8rem;
+  }
+  .cyberpunk-container {
+    padding: 30px;
+  }
+  .cyberpunk-control-panel {
+    top: 30px;
+    left: 30px;
+    width: 220px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cyberpunk-main-title {
+    font-size: 3.2rem;
+  }
+  .cyberpunk-subtitle {
+    font-size: 1.2rem;
+  }
+  .cyberpunk-cards-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+  .cyberpunk-card {
+    width: 100%;
+    max-width: 420px;
+    min-width: 260px;
+    min-height: 360px;
+  }
+  .cyberpunk-container {
+    padding: 25px;
+  }
+  .cyberpunk-control-panel {
+    top: 20px;
+    left: 20px;
+    width: 200px;
+    padding: 20px;
+  }
+  .cyberpunk-scene {
+    min-height: 70vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .cyberpunk-main-title {
+    font-size: 2.6rem;
+  }
+  .cyberpunk-subtitle {
+    font-size: 1.1rem;
+  }
+  .cyberpunk-card {
+    min-height: 340px;
+    padding: 25px 20px;
+  }
+  .cyberpunk-card-title {
+    font-size: 1.6rem;
+    min-height: 50px;
+  }
+  .cyberpunk-card-content {
+    font-size: 1rem;
+  }
+  .cyberpunk-action-btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+  }
+  .cyberpunk-control-panel {
+    top: 15px;
+    left: 15px;
+    width: 180px;
+    padding: 15px;
+  }
+  .cyberpunk-panel-title {
+    font-size: 1rem;
+  }
+  .cyberpunk-section-title {
+    font-size: 0.8rem;
+  }
+  .cyberpunk-control-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cyberpunk-cards-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .cyberpunk-card {
+    min-width: 240px;
+    width: 100%;
+    min-height: 340px;
+    padding: 25px 20px;
+  }
+}
+
+@media (max-height: 700px) {
+  .cyberpunk-scene {
+    min-height: 60vh;
+    padding: 20px 0;
+  }
+  .cyberpunk-cards-container {
+    margin-top: 20px;
+    gap: 20px;
+  }
+  .cyberpunk-card {
+    min-height: 320px;
+  }
+  .cyberpunk-action-btn {
+    margin-top: 30px;
+  }
+}
+
+/* Cyberpunk Scrollbar Styling */
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  display: none;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
+
+/* Custom scrollbar for specific cyberpunk containers */
+.cyberpunk-scroll {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
+
+.cyberpunk-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.cyberpunk-scroll::-webkit-scrollbar-track {
+  background: rgba(10, 10, 21, 0.2);
+  border-radius: 4px;
+}
+
+.cyberpunk-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary), var(--accent));
+  border-radius: 4px;
+  border: 1px solid rgba(10, 10, 21, 0.4);
+  box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+}
+
+.cyberpunk-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--secondary), var(--primary));
+  box-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
+}

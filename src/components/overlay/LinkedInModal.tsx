@@ -23,7 +23,7 @@ const LinkedInModal: React.FC<Props> = ({ open, onClose }) => {
     >
       <div className="absolute inset-0 bg-black/70 backdrop-blur-md" />
       <div
-        className="relative mx-4 w-full max-w-md overflow-hidden rounded-2xl border border-cyan-300/70 bg-black/60 p-6 text-center shadow-[0_0_35px_rgba(34,211,238,0.65)]"
+        className="relative mx-4 w-full max-w-2xl overflow-hidden rounded-2xl border border-cyan-300/70 bg-black/60 p-6 text-center shadow-[0_0_35px_rgba(0,243,255,0.65)] cyberpunk-scroll"
         onClick={(e) => e.stopPropagation()}
       >
         <button

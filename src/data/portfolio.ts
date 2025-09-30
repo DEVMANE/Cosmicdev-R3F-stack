@@ -69,7 +69,7 @@ export const sections: PortfolioSection[] = [
         "API Integration: Google API, Facebook API, Sabre Booking Engine, and various payment gateways.",
       ],
       skillsMisc: [
-        "AI/ML: Experience with ChatGPT (GPT-4.0 family), Gemini, Stable Diffusion, ComfyUI, Midjourney, Pika, Suno, and Krita.",
+        "AI/ML: Experience with ChatGPT (GPT-5, GPT-5 Codex), Gemini, Stable Diffusion, ComfyUI, Midjourney, Pika, Suno, and Krita.",
         "Blockchain: Interest in Cryptocurrency, NFTs, DeFi, GameFi, and the Metaverse.",
       ],
     },
